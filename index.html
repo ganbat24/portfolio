@@ -25,17 +25,21 @@
                     <a href="#experience" class="nav-link">Experience</a>
                     <a href="#education" class="nav-link">Education</a>
                     <a href="#contact" class="nav-link">Contact</a>
-                    <a href="CV_Selenge_Ganbat.pdf" download class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+                    <a href="CV_Selenge_Ganbat.pdf" download class="cv-button px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg">
                         <i class="fas fa-file-pdf mr-1"></i>CV
                     </a>
-                    <button id="dark-mode-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-moon text-gray-400 dark:text-gray-200" id="theme-icon"></i>
-                    </button>
+                    <div id="dark-mode-toggle" class="theme-toggle">
+                        <div class="theme-toggle-slider">
+                            <i class="fas fa-moon theme-toggle-icon" id="theme-icon"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4 md:hidden">
-                    <button id="dark-mode-toggle-mobile" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-moon text-gray-400 dark:text-gray-200" id="theme-icon-mobile"></i>
-                    </button>
+                    <div id="dark-mode-toggle-mobile" class="theme-toggle">
+                        <div class="theme-toggle-slider">
+                            <i class="fas fa-moon theme-toggle-icon" id="theme-icon-mobile"></i>
+                        </div>
+                    </div>
                     <button id="mobile-menu-btn" class="text-gray-700">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
@@ -204,7 +208,7 @@
                                     <li>Arduino</li>
                                     <li>ESP32</li>
                                     <li>RTOS</li>
-                                    <li>2D LiDAR</li>
+                                    <li>LiDAR</li>
                                     <li>Bare Metal</li>
                                     <li>Embedded Systems</li>
                                 </ul>
