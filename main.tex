@@ -1,0 +1,158 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small\textbf{#1} & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape Ganbat Selenge} \\ \vspace{8pt}
+    \small (+36) 204998873 $|$ 
+    \href{mailto:s.ganbat24@gmail.com}{\underline{s.ganbat24@gmail.com}} $|$ 
+    Debrecen, Hungary $|$
+    \href{https://www.linkedin.com/in/ganbat24/}{\underline{linkedin.com/in/ganbat24}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+Graduate Mechatronics Engineer (GPA: 4.7/5.0) with a focus on robotics, autonomous systems, and cyber-physical control. Experienced in ROS 2, sensor fusion (EKF, LiDAR), and full-stack software development. Proven ability to bridge mechanical design and intelligent software through high-level academic research and industrial internships.
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Debrecen}{Debrecen, Hungary}
+      {Bachelor of Science in Mechatronics Engineering}{Sep 2022 -- Feb 2026}
+      \resumeItemListStart
+        \resumeItem{\textbf{Grade: Excellent (4.7/5.0)} | Total Credits: 231 ECTS}
+        \resumeItem{\textbf{Specialization:} Mechatronic Systems (Control Theory, Robotics, and Embedded Systems)}
+        \resumeItem{\textbf{Honors:} Consistently achieved "Excellent (5)" grades in core technical modules including Robots and Robotics Technology, Applied Automatization, and Cyber-Physical Systems.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Robotics \& Control}{: ROS 2, Cyber-Physical Systems, PID Control, Kalman Filters (EKF), Applied Automatization} \\
+     \textbf{Software \& Tools}{: MATLAB, Simulink, LabVIEW, AutoCAD, NI Multisim, KiCad, Git/GitHub, Gazebo} \\
+     \textbf{Languages}{: C/C++, Python, JavaScript (Angular/Angular JS), Rust} \\
+     \textbf{Hardware}{: Raspberry Pi 4, Arduino Nano ESP32, 2D LiDAR, IMU, Ultrasonic/IR Sensors}
+    }}
+ \end{itemize}
+
+%-----------PROJECTS-----------
+\section{Research \& Engineering Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Coordination and Control of Mobile Robot Swarms (BSc Thesis)}} {ROS 2, Python, C++}
+          \resumeItemListStart
+            \resumeItem{Wrote a thesis developing a Leader-Follower cooperative localization framework.}
+            \resumeItem{Implemented an Extended Kalman Filter (EKF) to fuse LiDAR perception data with wheel odometry and IMU.}
+            \resumeItem{Engineered a perception pipeline using DBSCAN clustering for real-time tracking of follower robots.}
+            \resumeItem{Developed and validated the system in both Gazebo simulation and on physical Raspberry Pi 4 hardware.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+      \resumeSubheading
+      {Autonomous \& Assistive Robotics Research Group (A²R)}{Debrecen, Hungary}
+      {Undergraduate Researcher}{Feb 2025 -- Feb 2026}
+      \resumeItemListStart
+        \resumeItem{Conducted research focusing on multi-robot coordination and autonomous navigation.}
+        \resumeItem{\textbf{Thesis:} Developed a Leader-Follower cooperative localization framework using ROS 2, Python, and C++.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lime Light TechLead}{Oslo, Norway}
+      {Intern - Renewable Energy Management}{Jul 2024 -- Sep 2024}
+      \resumeItemListStart
+        \resumeItem{Engineered and monitored solar panel systems, ensuring optimal operation and power output.}
+        \resumeItem{Diagnosed hardware faults in systems and performed preventative maintenance on monitoring equipment.}
+      \resumeItemListEnd
+      
+    \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{Grapecity Mongolia} & {Ulaanbaatar, Mongolia} \\
+      \textit{\small Frontend Developer (Contract)} & \textit{\small Jan 2021 -- Feb 2021} \\
+      \textit{\small Frontend Developer (Contract)} & \textit{\small May 2020 -- Aug 2020} \\
+    \end{tabular*}\vspace{-7pt}
+    \resumeItemListStart
+        \resumeItem{Architected a banking application using Angular JS, implementing secure account management and transaction tracking.}
+        \resumeItem{Developed the UI for the "UB Parking" system, focusing on responsive design and real-time data visualization.}
+        \resumeItem{Collaborated with backend teams to debug API integrations and optimize application load times.}
+    \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------LANGUAGES-----------
+\section{Languages}
+  \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{English (C1 Proficient)}, \textbf{Mongolian (Native)}
+    }}
+  \end{itemize}
+
+\end{document}
