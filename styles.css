@@ -914,6 +914,20 @@ button:hover, a:hover {
     color: white;
 }
 
+/* Video embed container */
+.video-embed-container {
+    transition: all 0.3s ease;
+}
+
+.video-embed-container:hover {
+    border-color: var(--border-default);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .video-embed-container:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 /* Modern sliding toggle switch */
 .theme-toggle {
     position: relative;
