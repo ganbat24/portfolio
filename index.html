@@ -1,475 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganbat Selenge - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ganbat Selenge — Mechatronics Engineer</title>
+<meta name="description" content="Ganbat Selenge — Graduate Mechatronics Engineer specializing in robotics, autonomous systems, and cyber-physical control. ROS 2, sensor fusion, and full-stack software.">
+<meta property="og:title" content="Ganbat Selenge — Mechatronics Engineer">
+<meta property="og:description" content="Robotics, autonomous systems, and cyber-physical control. ROS 2, EKF sensor fusion, full-stack software.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ganbat.dev/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090d0b'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' fill='%234ade80' text-anchor='middle'%3EGS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090d0b;
+    --bg2:#0d120f;
+    --panel:#101613;
+    --line:#1d2620;
+    --ink:#d8e4da;
+    --dim:#7d8f83;
+    --accent:#4ade80;
+    --accent-dim:#2f9e5e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#06230f}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .prompt{color:var(--dim)}
+  .prompt::before{content:"$ ";color:var(--accent)}
+
+  /* ---------- window chrome ---------- */
+  .chrome{position:fixed;inset:0 0 auto 0;z-index:50;background:var(--bg2);border-bottom:1px solid var(--line)}
+  .chrome-bar{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:1140px;margin:0 auto}
+  .dots{display:flex;gap:7px}
+  .dots i{width:11px;height:11px;border-radius:50%;display:block;transition:.2s}
+  .dots .r{background:#ff5f56}.dots .y{background:#ffbd2e}.dots .g{background:#27c93f}
+  .dots i:hover{filter:brightness(1.3)}
+  .chrome-title{color:var(--dim);font-size:12px;flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chrome nav{display:flex;gap:20px}
+  .chrome nav a{color:var(--dim);font-size:13px}
+  .chrome nav a:hover,.chrome nav a.on{color:var(--accent);text-decoration:none}
+  .chrome .accent{color:var(--accent)}
+  .burger{display:none;background:none;border:0;color:var(--dim);font-size:20px;cursor:pointer}
+  @media(max-width:700px){
+    .chrome nav{display:none}
+    .burger{display:block}
+    .chrome-title{text-align:left}
+  }
+  .mmenu{display:none;flex-direction:column;gap:4px;padding:10px 24px 14px;border-top:1px solid var(--line);background:var(--bg2)}
+  .mmenu.open{display:flex}
+  .mmenu a{padding:8px 4px;color:var(--dim);font-size:14px;border-bottom:1px solid var(--line)}
+  .mmenu a:last-child{border-bottom:0}
+  .mmenu a:hover{color:var(--accent)}
+
+  /* ---------- status bar ---------- */
+  .statusbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--bg2);border-top:1px solid var(--line);color:var(--dim);font-size:11px;display:flex;gap:22px;padding:6px 24px;max-width:1140px;margin:0 auto}
+  @media(max-width:700px){.statusbar{display:none}}
+  .statusbar .ok{color:var(--accent)}
+  .statusbar .k{color:var(--dim)}
+
+  main{padding-top:56px}
+  section{padding:76px 0;border-bottom:1px solid var(--line)}
+  @media(max-width:700px){section{padding:56px 0}}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding-top:0}
+  .hero .line{font-size:14px;color:var(--dim);margin-bottom:6px}
+  .hero h1{font-size:clamp(34px,7vw,66px);line-height:1.05;font-weight:700;letter-spacing:-1px;margin:10px 0 20px}
+  .caret{display:inline-block;width:.55em;height:1.05em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero p{max-width:62ch;color:var(--dim);font-size:15px;margin-bottom:34px}
+  .links{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{border:1px solid var(--line);color:var(--ink);padding:11px 16px;font-size:13px;background:transparent;transition:.18s;border-radius:6px;cursor:pointer}
+  .btn:hover{text-decoration:none;border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#06230f;font-weight:700}
+  .btn.solid:hover{background:#5fee92;color:#06230f}
+  .cmdline{margin-top:44px;font-size:13px;color:var(--dim)}
+  .cmdline b{color:var(--ink);font-weight:500}
+
+  /* ---------- sections ---------- */
+  .sec{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+  .sec .num{color:var(--accent);font-size:13px}
+  .sec h2{font-size:24px;font-weight:700;letter-spacing:-.3px}
+  .sec::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .skillbox{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px}
+  .skillbox h3{font-size:13px;color:var(--accent);margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-size:12px;color:var(--ink);border:1px solid var(--line);padding:5px 10px;border-radius:5px;background:var(--bg2)}
+  .tag:hover{border-color:var(--accent);color:var(--accent)}
+
+  .project{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px}
+  .project .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  .project h3{font-size:20px;font-weight:700;letter-spacing:-.2px;margin-bottom:6px}
+  .project .sub{color:var(--accent);font-size:12px}
+  .project ul{list-style:none}
+  .project li{padding-left:22px;position:relative;margin-bottom:10px;color:var(--ink);font-size:14px}
+  .project li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+  .video{margin-top:20px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg2)}
+  .video iframe{display:block;width:100%;border:0}
+
+  .exp{position:relative;padding-left:26px}
+  .exp::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .exp-item{position:relative;margin-bottom:38px}
+  .exp-item::before{content:"";position:absolute;left:-26px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
+  .exp-item h3{font-size:17px;font-weight:700}
+  .exp-item .org{color:var(--accent);font-size:13px;margin-top:2px}
+  .exp-item .meta{color:var(--dim);font-size:12px;margin-top:2px}
+  .exp-item ul{list-style:none;margin-top:12px;color:var(--dim);font-size:13.5px}
+  .exp-item li{padding-left:18px;position:relative;margin-bottom:6px}
+  .exp-item li::before{content:"•";position:absolute;left:2px;color:var(--accent)}
+
+  .edu{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px}
+  .edu h3{font-size:20px;font-weight:700;margin-bottom:6px}
+  .edu .org{color:var(--accent)}
+  .edu .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  @media(max-width:560px){.edu .grid{grid-template-columns:1fr}}
+  .edu .k{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+  .edu .v{font-size:13.5px}
+
+  .contact-grid{display:grid;gap:12px;margin-top:24px}
+  .c-item{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:8px;background:var(--panel);transition:.18s}
+  .c-item:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .c-item b{color:var(--ink);font-size:13px;display:block}
+  .c-item small{color:var(--dim);font-size:12px}
+
+  footer{padding:34px 0 52px;color:var(--dim);font-size:12px;text-align:center}
+  footer a{color:var(--ink)}
+  footer a:hover{color:var(--accent)}
+
+  /* ---------- easter egg: toast ---------- */
+  .toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%) translateY(20px);z-index:200;background:var(--panel);border:1px solid var(--accent);color:var(--accent);padding:12px 22px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 14px 40px -18px rgba(0,0,0,.9)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(max-width:700px){.toast{bottom:20px;width:calc(100% - 48px);text-align:center}}
+
+  /* ---------- easter egg: matrix rain ---------- */
+  .matrix{position:fixed;inset:0;z-index:150;pointer-events:none;opacity:0;transition:opacity .3s}
+  .matrix.on{opacity:1}
+
+  /* ---------- easter egg: rgb border pulse ---------- */
+  .rgb{animation:rgbPulse 1.2s linear infinite}
+  @keyframes rgbPulse{
+    0%{box-shadow:0 0 0 2px #ff5f56}25%{box-shadow:0 0 0 2px #ffbd2e}
+    50%{box-shadow:0 0 0 2px #27c93f}75%{box-shadow:0 0 0 2px #4a9eff}
+    100%{box-shadow:0 0 0 2px #ff5f56}
+  }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- CRT scanlines (subtle) ---------- */
+  .crt{position:fixed;inset:0;z-index:10;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px)}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
 </head>
-<body class="bg-gray-50">
-    <!-- Progress Indicator -->
-    <div class="progress-indicator" id="progress-indicator"></div>
-    <!-- Navigation -->
-    <nav class="nav-fixed" style="background-color: var(--nav-bg); backdrop-filter: blur(10px);">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold gradient-text">GS</div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#skills" class="nav-link">Skills</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#education" class="nav-link">Education</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="CV_Selenge_Ganbat.pdf" download class="cv-button px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg">
-                        <i class="fas fa-file-pdf mr-1"></i>CV
-                    </a>
-                    <div id="dark-mode-toggle" class="theme-toggle">
-                        <div class="theme-toggle-slider">
-                            <i class="fas fa-moon theme-toggle-icon" id="theme-icon"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 md:hidden">
-                    <div id="dark-mode-toggle-mobile" class="theme-toggle">
-                        <div class="theme-toggle-slider">
-                            <i class="fas fa-moon theme-toggle-icon" id="theme-icon-mobile"></i>
-                        </div>
-                    </div>
-                    <button id="mobile-menu-btn" class="text-gray-700">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t" style="background-color: var(--card-bg); border-color: var(--border-color);">
-            <div class="px-6 py-4 space-y-3">
-                <a href="#home" class="block nav-link">Home</a>
-                <a href="#about" class="block nav-link">About</a>
-                <a href="#skills" class="block nav-link">Skills</a>
-                <a href="#projects" class="block nav-link">Projects</a>
-                <a href="#experience" class="block nav-link">Experience</a>
-                <a href="#education" class="block nav-link">Education</a>
-                <a href="#contact" class="block nav-link">Contact</a>
-                <a href="CV_Selenge_Ganbat.pdf" download class="block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium text-center">
-                    <i class="fas fa-file-pdf mr-1"></i>Download CV
-                </a>
-            </div>
-        </div>
+<body>
+<div class="chrome">
+  <div class="chrome-bar">
+    <div class="dots" id="dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+    <div class="chrome-title">ganbat@portfolio: ~/mechatronics</div>
+    <nav id="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">exp</a>
+      <a href="#education">edu</a>
+      <a href="#contact" class="accent">contact</a>
     </nav>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="#about">about</a>
+    <a href="#skills">skills</a>
+    <a href="#projects">projects</a>
+    <a href="#experience">experience</a>
+    <a href="#education">education</a>
+    <a href="#contact">contact</a>
+    <a href="CV_Selenge_Ganbat.pdf" download>download CV</a>
+  </div>
+</div>
+<div class="crt"></div>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center hero-gradient pt-20 section-relative">
-        <div class="container mx-auto px-6 text-center">
-            <div class="fade-in">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4">
-                    <span class="gradient-text">Ganbat Selenge</span>
-                </h1>
-                <div class="text-2xl md:text-3xl text-primary mb-6 h-8">
-                    <span id="typing-text" class="typing-effect"></span>
-                </div>
-                <p class="text-lg text-secondary mb-8 max-w-2xl mx-auto">
-                    Graduate Mechatronics Engineer specializing in robotics, autonomous systems, and cyber-physical control
-                </p>
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <a href="mailto:s.ganbat24@gmail.com" class="border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg hover:bg-purple-600 hover:text-white transition-colors">
-                        <i class="fas fa-envelope mr-2"></i>Get In Touch
-                    </a>
-                    <a href="#contact" class="border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg hover:bg-purple-600 hover:text-white transition-colors">
-                        <i class="fas fa-phone mr-2"></i>Contact Info
-                    </a>
-                    <a href="CV_Selenge_Ganbat.pdf" download class="border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg hover:bg-purple-600 hover:text-white transition-colors">
-                        <i class="fas fa-file-pdf mr-2"></i>Download CV
-                    </a>
-                </div>
-                <div class="flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/ganbat24/" target="_blank" class="text-muted hover:text-purple-600 transition-colors">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="https://github.com" target="_blank" class="text-muted hover:text-purple-600 transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                </div>
-            </div>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="line reveal"><span class="prompt">whoami</span></div>
+      <h1 class="reveal">Ganbat Selenge<span class="caret"></span></h1>
+      <p class="reveal">Mechatronics engineer building autonomous systems that bridge mechanical design and intelligent software — ROS&nbsp;2, sensor fusion&nbsp;(EKF,&nbsp;LiDAR), and cyber-physical control.</p>
+      <div class="links reveal">
+        <a class="btn solid" href="mailto:s.ganbat24@gmail.com">Contact me</a>
+        <a class="btn" href="CV_Selenge_Ganbat.pdf" download>Download CV.pdf</a>
+        <a class="btn" href="https://github.com/ganbat24" target="_blank" rel="noopener">github.com/ganbat24</a>
+      </div>
+      <div class="cmdline reveal">
+        <span class="prompt">cat status.txt</span><br>
+        <b>Graduate Mechatronics Engineer</b> · GPA 4.7/5.0 · 231 ECTS · Debrecen, Hungary
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec reveal"><span class="num">01</span><h2>about</h2></div>
+      <p class="reveal" style="max-width:70ch;color:var(--ink)">Graduate Mechatronics Engineer (GPA: 4.7/5.0) with a focus on robotics, autonomous systems, and cyber-physical control. Experienced in ROS&nbsp;2, sensor fusion (EKF, LiDAR), and full-stack software development. I bridge mechanical design and intelligent software through high-level academic research and industrial internships.</p>
+      <div class="grid reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:30px">
+        <div class="skillbox"><h3>location</h3><div class="tags"><span class="tag">Debrecen, Hungary</span></div></div>
+        <div class="skillbox"><h3>phone</h3><div class="tags"><a class="tag" href="tel:+36204998873">+36 20 499 8873</a></div></div>
+        <div class="skillbox"><h3>contact</h3><div class="tags"><a class="tag" href="mailto:s.ganbat24@gmail.com">s.ganbat24@gmail.com</a></div></div>
+        <div class="skillbox"><h3>languages</h3><div class="tags"><span class="tag">EN · C1</span><span class="tag">MN · Native</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec reveal"><span class="num">02</span><h2>skills</h2></div>
+      <div class="skills-grid">
+        <div class="skillbox reveal"><h3>// robotics &amp; control</h3><div class="tags">
+          <span class="tag">ROS 2</span><span class="tag">micro-ROS</span><span class="tag">DDS</span><span class="tag">SLAM</span><span class="tag">Motion Plan.</span><span class="tag">EKF</span><span class="tag">PID</span><span class="tag">Sensor Fusion</span></div></div>
+        <div class="skillbox reveal"><h3>// software &amp; tools</h3><div class="tags">
+          <span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Docker</span><span class="tag">LabVIEW</span><span class="tag">AutoCAD</span><span class="tag">KiCad</span><span class="tag">Gazebo</span><span class="tag">Git</span></div></div>
+        <div class="skillbox reveal"><h3>// languages</h3><div class="tags">
+          <span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">Rust</span><span class="tag">TypeScript</span><span class="tag">JS</span></div></div>
+        <div class="skillbox reveal"><h3>// hardware</h3><div class="tags">
+          <span class="tag">Raspberry Pi</span><span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">RTOS</span><span class="tag">LiDAR</span><span class="tag">Embedded</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec reveal"><span class="num">03</span><h2>projects</h2></div>
+      <div class="project reveal">
+        <div class="top">
+          <div>
+            <h3>Coordination &amp; Control of Mobile Robot Swarms</h3>
+            <div class="sub">BSc Thesis Project</div>
+          </div>
+          <div class="tags"><span class="tag">ROS 2</span><span class="tag">Python</span><span class="tag">C++</span></div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 section-relative" style="background-color: var(--bg-primary);">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="rounded-2xl p-8 shadow-lg" style="background-color: var(--bg-secondary);">
-                        <p class="text-lg leading-relaxed mb-6 text-primary">
-                            Graduate Mechatronics Engineer (GPA: 4.7/5.0) with a focus on robotics, autonomous systems, and cyber-physical control. Experienced in ROS 2, sensor fusion (EKF, LiDAR), and full-stack software development. Proven ability to bridge mechanical design and intelligent software through high-level academic research and industrial internships.
-                        </p>
-                        <div class="grid md:grid-cols-2 gap-6 mt-8">
-                            <div class="flex items-center space-x-3">
-                                <i class="fas fa-map-marker-alt text-purple-600"></i>
-                                <span class="text-primary">Debrecen, Hungary</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <i class="fas fa-phone text-purple-600"></i>
-                                <span class="text-primary">+36 204998873</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <i class="fas fa-envelope text-purple-600"></i>
-                                <span class="text-primary">s.ganbat24@gmail.com</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <i class="fas fa-language text-purple-600"></i>
-                                <span class="text-primary">English (C1), Mongolian (Native)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <ul>
+          <li>Wrote a thesis developing a Leader-Follower cooperative localization framework.</li>
+          <li>Implemented an Extended Kalman Filter (EKF) fusing LiDAR perception with wheel odometry and IMU.</li>
+          <li>Engineered a perception pipeline using DBSCAN clustering for real-time tracking of follower robots.</li>
+          <li>Validated the system in Gazebo simulation and on physical Raspberry Pi 4 hardware.</li>
+        </ul>
+        <div class="video">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7408428484760629248?compact=1" height="399" loading="lazy" allowfullscreen title="BSc thesis project presentation video"></iframe>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 section-relative" style="background-color: var(--bg-secondary);">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Technical Skills</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                    <div class="card card--interactive skill-card">
-                        <div class="card__body">
-                            <div class="card__icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3 class="card__title">Robotics & Control</h3>
-                            <div class="skill-content">
-                                <ul class="skill-list text-sm text-secondary">
-                                    <li>ROS 2</li>
-                                    <li>micro-ros</li>
-                                    <li>DDS</li>
-                                    <li>SLAM</li>
-                                    <li>Motion Planning</li>
-                                    <li>Kalman Filters</li>
-                                    <li>Sensor Fusion</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card--interactive skill-card">
-                        <div class="card__body">
-                            <div class="card__icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="card__title">Software & Tools</h3>
-                            <div class="skill-content">
-                                <ul class="skill-list text-sm text-secondary">
-                                    <li>MATLAB</li>
-                                    <li>Simulink</li>
-                                    <li>Docker</li>
-                                    <li>LabVIEW</li>
-                                    <li>AutoCAD</li>
-                                    <li>NI Multisim</li>
-                                    <li>KiCad</li>
-                                    <li>Git/GitHub</li>
-                                    <li>Gazebo</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card--interactive skill-card">
-                        <div class="card__body">
-                            <div class="card__icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3 class="card__title">Languages</h3>
-                            <div class="skill-content">
-                                <ul class="skill-list text-sm text-secondary">
-                                    <li>C/C++</li>
-                                    <li>Python</li>
-                                    <li>Rust</li>
-                                    <li>HTML/CSS/JS</li>
-                                    <li>TypeScript</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card--interactive skill-card">
-                        <div class="card__body">
-                            <div class="card__icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <h3 class="card__title">Hardware</h3>
-                            <div class="skill-content">
-                                <ul class="skill-list text-sm text-secondary">
-                                    <li>Raspberry Pi</li>
-                                    <li>Arduino</li>
-                                    <li>ESP32</li>
-                                    <li>RTOS</li>
-                                    <li>LiDAR</li>
-                                    <li>Bare Metal</li>
-                                    <li>Embedded Systems</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec reveal"><span class="num">04</span><h2>experience</h2></div>
+      <div class="exp">
+        <div class="exp-item reveal">
+          <h3>Undergraduate Researcher</h3>
+          <div class="org">Autonomous &amp; Assistive Robotics Research Group (A²R)</div>
+          <div class="meta">Debrecen, Hungary · Feb 2025 – Feb 2026</div>
+          <ul>
+            <li>Conducted research on multi-robot coordination and autonomous navigation.</li>
+            <li><b style="color:var(--ink)">Thesis:</b> Leader-Follower cooperative localization framework using ROS 2, Python, and C++.</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 section-relative" style="background-color: var(--bg-primary);">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Research & Engineering Projects</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="card card--gradient card--elevated">
-                        <div class="card__body">
-                            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
-                                <div>
-                                    <h3 class="card__title text-2xl mb-2">Coordination and Control of Mobile Robot Swarms</h3>
-                                    <p class="card__subtitle text-purple-600 font-medium">BSc Thesis Project</p>
-                                </div>
-                                <div class="tech-badge">
-                                    <i class="fas fa-code"></i>ROS 2, Python, C++
-                                </div>
-                            </div>
-                            <div class="card__content space-y-4">
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-check-circle text-purple-600 mt-1"></i>
-                                    <p>Wrote a thesis developing a Leader-Follower cooperative localization framework</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-check-circle text-purple-600 mt-1"></i>
-                                    <p>Implemented an Extended Kalman Filter (EKF) to fuse LiDAR perception data with wheel odometry and IMU</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-check-circle text-purple-600 mt-1"></i>
-                                    <p>Engineered a perception pipeline using DBSCAN clustering for real-time tracking of follower robots</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-check-circle text-purple-600 mt-1"></i>
-                                    <p>Developed and validated the system in both Gazebo simulation and on physical Raspberry Pi 4 hardware</p>
-                                </div>
-                            </div>
-                            <div class="mt-6">
-                                <p class="text-sm text-secondary mb-3 font-medium">Watch me present this project:</p>
-                                <div class="video-embed-container rounded-lg overflow-hidden" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-subtle);">
-                                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7408428484760629248?compact=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Embedded post" class="w-full" style="max-width: 100%; height: auto; aspect-ratio: 504/399;"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="exp-item reveal">
+          <h3>Intern — Renewable Energy Management</h3>
+          <div class="org">Lime Light TechLead</div>
+          <div class="meta">Oslo, Norway · Jul 2024 – Sep 2024</div>
+          <ul>
+            <li>Engineered and monitored solar panel systems for optimal operation and power output.</li>
+            <li>Diagnosed hardware faults and performed preventative maintenance on monitoring equipment.</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 section-relative" style="background-color: var(--bg-secondary);">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Experience</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="timeline-container">
-                        <div class="timeline-line"></div>
-                        
-                        <!-- Experience 1 -->
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card">
-                                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-4">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-primary">Undergraduate Researcher</h3>
-                                        <p class="text-purple-600 font-medium">Autonomous & Assistive Robotics Research Group (A²R)</p>
-                                        <p class="text-secondary text-sm">Debrecen, Hungary</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-tertiary text-sm">Feb 2025 -- Feb 2026</p>
-                                    </div>
-                                </div>
-                                <ul class="space-y-2 text-primary">
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span>Conducted research focusing on multi-robot coordination and autonomous navigation</span>
-                                    </li>
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span><strong>Thesis:</strong> Developed a Leader-Follower cooperative localization framework using ROS 2, Python, and C++</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Experience 2 -->
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card">
-                                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-4">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-primary">Intern - Renewable Energy Management</h3>
-                                        <p class="text-purple-600 font-medium">Lime Light TechLead</p>
-                                        <p class="text-secondary text-sm">Oslo, Norway</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-tertiary text-sm">Jul 2024 -- Sep 2024</p>
-                                    </div>
-                                </div>
-                                <ul class="space-y-2 text-primary">
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span>Engineered and monitored solar panel systems, ensuring optimal operation and power output</span>
-                                    </li>
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span>Diagnosed hardware faults in systems and performed preventative maintenance on monitoring equipment</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Experience 3 -->
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card">
-                                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-4">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-primary">Frontend Developer (Contract)</h3>
-                                        <p class="text-purple-600 font-medium">Grapecity Mongolia</p>
-                                        <p class="text-secondary text-sm">Ulaanbaatar, Mongolia</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-tertiary text-sm">Jan 2021 -- Feb 2021</p>
-                                        <p class="text-tertiary text-sm">May 2020 -- Aug 2020</p>
-                                    </div>
-                                </div>
-                                <ul class="space-y-2 text-primary">
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span>Architected a banking application using Angular JS, implementing secure account management and transaction tracking</span>
-                                    </li>
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span>Developed the UI for the "UB Parking" system, focusing on responsive design and real-time data visualization</span>
-                                    </li>
-                                    <li class="flex items-start space-x-2">
-                                        <i class="fas fa-arrow-right text-purple-600 text-xs mt-1.5"></i>
-                                        <span>Collaborated with backend teams to debug API integrations and optimize application load times</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="exp-item reveal">
+          <h3>Frontend Developer (Contract)</h3>
+          <div class="org">Grapecity Mongolia</div>
+          <div class="meta">Ulaanbaatar, Mongolia · 2020–2021 (two contracts)</div>
+          <ul>
+            <li>Architected a banking application in Angular JS with secure account management and transaction tracking.</li>
+            <li>Developed the UI for the "UB Parking" system (responsive design, real-time data visualization).</li>
+            <li>Debugged API integrations and optimized load times with backend teams.</li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-20 section-relative" style="background-color: var(--bg-primary);">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Education</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="card card--gradient card--elevated">
-                        <div class="card__body">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-6">
-                                <div>
-                                    <h3 class="card__title text-2xl mb-2">Bachelor of Science in Mechatronics Engineering</h3>
-                                    <p class="card__subtitle text-purple-600 font-medium text-lg">University of Debrecen</p>
-                                    <p class="text-secondary">Debrecen, Hungary</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="education-date text-tertiary">Sep 2022 -- Feb 2026</p>
-                                </div>
-                            </div>
-                            <div class="card__content space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <i class="fas fa-graduation-cap text-purple-600"></i>
-                                    <p><strong>Grade:</strong> Excellent (4.7/5.0) | Total Credits: 231 ECTS</p>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <i class="fas fa-cogs text-purple-600"></i>
-                                    <p><strong>Specialization:</strong> Mechatronic Systems (Control Theory, Robotics, and Embedded Systems)</p>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <i class="fas fa-award text-purple-600"></i>
-                                    <p><strong>Honors:</strong> Consistently achieved "Excellent (5)" grades in core technical modules including Robots and Robotics Technology, Applied Automatization, and Cyber-Physical Systems</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec reveal"><span class="num">05</span><h2>education</h2></div>
+      <div class="edu reveal">
+        <h3>BSc, Mechatronics Engineering</h3>
+        <div class="org">University of Debrecen</div>
+        <div class="meta" style="color:var(--dim)">Sep 2022 – Feb 2026 · Debrecen, Hungary</div>
+        <div class="grid">
+          <div><div class="k">Grade</div><div class="v">Excellent · 4.7 / 5.0</div></div>
+          <div><div class="k">Credits</div><div class="v">231 ECTS</div></div>
+          <div><div class="k">Specialization</div><div class="v">Mechatronic Systems (Control Theory, Robotics, Embedded)</div></div>
+          <div><div class="k">Honors</div><div class="v">Consistent "Excellent (5)" in Robots &amp; Robotics Technology, Applied Automatization, Cyber-Physical Systems</div></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 section-relative" style="background-color: var(--bg-secondary);">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
-                <div class="max-w-2xl mx-auto">
-                    <div class="card card--elevated">
-                        <div class="card__body">
-                            <p class="text-center mb-8 text-primary">
-                                I'm always interested in hearing about new opportunities and exciting projects. Feel free to reach out!
-                            </p>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <a href="mailto:s.ganbat24@gmail.com" class="flex items-center space-x-4 p-4 rounded-lg hover:bg-purple-100 transition-colors" style="background-color: var(--bg-tertiary);">
-                                    <i class="fas fa-envelope text-purple-600 text-xl"></i>
-                                    <div>
-                                        <p class="font-medium text-primary">Email</p>
-                                        <p class="text-secondary">s.ganbat24@gmail.com</p>
-                                    </div>
-                                </a>
-                                <a href="tel:+36204998873" class="flex items-center space-x-4 p-4 rounded-lg hover:bg-purple-100 transition-colors" style="background-color: var(--bg-tertiary);">
-                                    <i class="fas fa-phone text-purple-600 text-xl"></i>
-                                    <div>
-                                        <p class="font-medium text-primary">Phone</p>
-                                        <p class="text-secondary">+36 204998873</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.linkedin.com/in/ganbat24/" target="_blank" class="flex items-center space-x-4 p-4 rounded-lg hover:bg-purple-100 transition-colors" style="background-color: var(--bg-tertiary);">
-                                    <i class="fab fa-linkedin text-purple-600 text-xl"></i>
-                                    <div>
-                                        <p class="font-medium text-primary">LinkedIn</p>
-                                        <p class="text-secondary">linkedin.com/in/ganbat24</p>
-                                    </div>
-                                </a>
-                                <div class="flex items-center space-x-4 p-4 rounded-lg" style="background-color: var(--bg-tertiary);">
-                                    <i class="fas fa-map-marker-alt text-purple-600 text-xl"></i>
-                                    <div>
-                                        <p class="font-medium text-primary">Location</p>
-                                        <p class="text-secondary">Debrecen, Hungary</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec reveal"><span class="num">06</span><h2>contact</h2></div>
+      <p class="reveal" style="color:var(--dim);max-width:60ch;margin-bottom:8px">I'm always interested in new opportunities and exciting projects — feel free to reach out.</p>
+      <div class="contact-grid reveal">
+        <a class="c-item" href="mailto:s.ganbat24@gmail.com"><b>Email</b><small>s.ganbat24@gmail.com</small></a>
+        <a class="c-item" href="tel:+36204998873"><b>Phone</b><small>+36 20 499 8873</small></a>
+        <a class="c-item" href="https://www.linkedin.com/in/ganbat24/" target="_blank" rel="noopener"><b>LinkedIn</b><small>linkedin.com/in/ganbat24</small></a>
+        <a class="c-item" href="https://github.com/ganbat24" target="_blank" rel="noopener"><b>GitHub</b><small>github.com/ganbat24</small></a>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <!-- Footer -->
-    <footer class="py-8" style="background-color: #111827; color: white;">
-        <div class="container mx-auto px-6 text-center">
-            <p class="mb-4">© 2026 Ganbat Selenge. All rights reserved.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/ganbat24/" target="_blank" class="hover:text-purple-400 transition-colors">
-                    <i class="fab fa-linkedin text-xl"></i>
-                </a>
-                <a href="https://github.com" target="_blank" class="hover:text-purple-400 transition-colors">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+<footer>© 2026 Ganbat Selenge · <a href="https://github.com/ganbat24" target="_blank" rel="noopener">github.com/ganbat24</a> · <a href="https://www.linkedin.com/in/ganbat24/" target="_blank" rel="noopener">LinkedIn</a></footer>
 
-    <script src="script.js"></script>
+<div class="statusbar">
+  <span><span class="k">ganbat@portfolio</span>: <span class="ok">~</span></span>
+  <span><span class="k">LANG</span>=en_US.UTF-8</span>
+  <span><span class="k">UPTIME</span> ∞</span>
+  <span><span class="k">ERRORS</span> <span class="ok">0</span></span>
+  <span style="margin-left:auto"><span class="ok">●</span> open to work</span>
+</div>
+
+<div class="toast" id="toast"></div>
+<canvas class="matrix" id="matrix"></canvas>
+
+<script>
+/* ================= easter egg: matrix rain ================= */
+(function(){
+  const cv = document.getElementById('matrix');
+  const ctx = cv.getContext('2d');
+  let raf = null, drops = [], cols = 0, fontSize = 14;
+  const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789ABCDEF';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){ cv.width = innerWidth; cv.height = innerHeight; cols = Math.floor(cv.width/fontSize); drops = Array(cols).fill(1); }
+  function frame(){
+    ctx.fillStyle = 'rgba(9,13,11,0.08)'; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.fillStyle = '#4ade80'; ctx.font = fontSize+'px monospace';
+    for(let i=0;i<drops.length;i++){
+      const ch = CHARS[Math.floor(Math.random()*CHARS.length)];
+      ctx.fillText(ch, i*fontSize, drops[i]*fontSize);
+      if(drops[i]*fontSize > cv.height && Math.random() > .975) drops[i] = 0;
+      drops[i]++;
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  window.startMatrix = function(){
+    cv.classList.add('on');
+    if(reduced){ cv.classList.remove('on'); return; }
+    size();
+    if(!raf) raf = requestAnimationFrame(frame);
+    clearTimeout(window._mx);
+    window._mx = setTimeout(()=>{ cancelAnimationFrame(raf); raf=null; ctx.clearRect(0,0,cv.width,cv.height); cv.classList.remove('on'); }, 6000);
+  };
+  addEventListener('resize', ()=>{ if(raf) size(); });
+})();
+
+/* ================= easter egg: konami code ================= */
+(function(){
+  const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let pos = 0;
+  addEventListener('keydown', e=>{
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    pos = (k === SEQ[pos]) ? pos+1 : (k === SEQ[0] ? 1 : 0);
+    if(pos === SEQ.length){
+      pos = 0;
+      startMatrix();
+      showToast('KONAMI UNLOCKED — GANBAT MODE 🕹️');
+    }
+  });
+})();
+
+/* ================= easter egg: secret key combo (g then s) ================= */
+(function(){
+  let seq = '';
+  addEventListener('keydown', e=>{
+    if(e.target && e.target.tagName === 'INPUT') return;
+    const k = e.key.toLowerCase();
+    if(/^[a-z]$/.test(k)){ seq = (seq+k).slice(-8); }
+    if(seq.endsWith('ganbat')){
+      seq = '';
+      document.querySelectorAll('h2').forEach(h=>h.classList.add('rgb'));
+      showToast('🕵️ you found me — hire me? s.ganbat24@gmail.com');
+      setTimeout(()=>document.querySelectorAll('h2').forEach(h=>h.classList.remove('rgb')), 5000);
+    }
+  });
+})();
+
+/* ================= toast helper ================= */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 4000);
+}
+/* ================= mobile menu ================= */
+(function(){
+  const b = document.getElementById('burger'), m = document.getElementById('mmenu');
+  b.addEventListener('click', ()=>{ m.classList.toggle('open'); b.textContent = m.classList.contains('open') ? '✕' : '☰'; });
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{ m.classList.remove('open'); b.textContent='☰'; }));
+})();
+
+/* ================= scroll reveal + active nav ================= */
+(function(){
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const links = [...document.querySelectorAll('#nav-links a')];
+  const secs = [...document.querySelectorAll('section[id]')];
+  addEventListener('scroll', ()=>{
+    const y = scrollY + 120;
+    let cur = '';
+    secs.forEach(s=>{ if(s.offsetTop <= y) cur = s.id; });
+    links.forEach(a=>a.classList.toggle('on', a.getAttribute('href') === '#'+cur));
+  }, {passive:true});
+})();
+
+/* ================= console easter egg ================= */
+console.log('%c   ____ ____', 'color:#4ade80');
+console.log('%c  / ___| __ )   GANBAT SELENGE — mechatronics engineer', 'color:#4ade80');
+console.log('%c | |  _|  _ \\   ros2 · ekf · slam · full-stack', 'color:#7d8f83');
+console.log('%c | |_| | |_) |  s.ganbat24@gmail.com', 'color:#7d8f83');
+console.log('%c  \\____|____/   github.com/ganbat24', 'color:#7d8f83');
+console.log('%c psst… try the konami code: ↑ ↑ ↓ ↓ ← → ← → B A', 'color:#ffbd2e;font-style:italic');
+</script>
 </body>
 </html>
